@@ -27,7 +27,7 @@ jobs:
       if: runner.os == 'Windows'
     - name: Install Dependencies
       shell: bash
-      run: |
+      run:
         if [[ "${{ runner.os }}" == "Linux" ]] ; then
           sudo apt-get update -qq
           sudo apt-get install -y \
@@ -35,7 +35,7 @@ jobs:
         fi
     - name: Generating Makefiles
       shell: bash
-      run: |
+      run:
         if [[ "${{ runner.os }}" == "Windows" ]] ; then
           export enable_ccache=off
         else
@@ -53,11 +53,11 @@ jobs:
           -DSKIA_LIBRARY=./skia/out/Release-x64/skia.lib
     - name: Compiling
       shell: bash
-      run: |
+      run:
         cd build && ninja
     - uses: actions/upload-artifact@v3
       with:
         name: aseprite
-        path: |
+        path:
           D:/a/aseprite/aseprite/build/bin/data
           D:/a/aseprite/aseprite/build/bin/aseprite.exe
